@@ -1,26 +1,38 @@
-// 🚀 MALLA INTERACTIVA DE PSICOLOGÍA
 // Lógica general + verificación especial de 5° año
+//  localStorage
+let aprobadas = JSON.parse(localStorage.getItem('materiasAprobadas')) || [];
 
-// 1️⃣ Habilitar materias sin correlativas
+document.querySelectorAll('.materia').forEach(materia => {
+  const id = parseInt(materia.dataset.id);
+
+  // Si está en localStorage, marcar como aprobada
+  if (aprobadas.includes(id)) {
+    materia.classList.remove('bloqueada', 'habilitada');
+    materia.classList.add('aprobada');
+  } 
+  
+// Habilitar materias sin correlativas
 document.querySelectorAll('.materia').forEach(materia => {
   if (materia.dataset.correlativas.trim() === "") {
     materia.classList.remove('bloqueada');
     materia.classList.add('habilitada');
   }
 
-  // Escucha clics para aprobar
+  // clic para aprobar
   materia.addEventListener('click', () => {
     if (materia.classList.contains('habilitada')) {
       materia.classList.remove('habilitada');
       materia.classList.add('aprobada');
       desbloquearMaterias(parseInt(materia.dataset.id));
+      localStorage.setItem('materiasAprobadas', JSON.stringify(aprobadas)); // ✅ Actualiza localStorage
+      desbloquearMaterias(id);
     } else if (materia.classList.contains('bloqueada')) {
       alert("Esta materia aún está bloqueada.");
     }
   });
 });
 
-// 2️⃣ Verificar correlativas normales + especiales
+// Verificar correlativas normales + especiales
 function desbloquearMaterias(aprobadaId) {
   document.querySelectorAll('.materia').forEach(materia => {
     if (materia.classList.contains('bloqueada')) {
@@ -48,11 +60,9 @@ function desbloquearMaterias(aprobadaId) {
     }
   });
 
-  // Verifica prácticas de 5° cada vez
+  // Verifica prácticas de 5° 
   verificarPracticas();
 }
-
-// 3️⃣ Función para verificar prácticas de 5°
 function verificarPracticas() {
   [36, 37, 38].forEach(practicaId => {
     const practica = document.querySelector(`.materia[data-id="${practicaId}"]`);
@@ -90,7 +100,6 @@ function verificarPracticas() {
 
       if (!orientacionOk) requisitos = false;
 
-      // Aplica
       if (requisitos) {
         practica.classList.remove('bloqueada');
         practica.classList.add('habilitada');
@@ -102,5 +111,10 @@ function verificarPracticas() {
   });
 }
 
-// 4️⃣ Verificar prácticas de 5° también al cargar la página
 verificarPracticas();
+//boton de reinicio
+document.getElementById('reset').addEventListener('click', () => {
+  localStorage.removeItem('materiasAprobadas');
+  window.location.reload();
+});
+
