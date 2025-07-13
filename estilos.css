@@ -1,29 +1,47 @@
+/* Fondo azul marino para modo noche */
 body {
-  font-family: Times New Roman, sans-serif;
-  background: #f5f5f5;
-  padding: 20px;
+  background-color: #003366; /* Azul marino */
+  color: #ffffff;
+  font-family: Arial, sans-serif;
 }
 
-#malla {
+h1, h2, h3 {
+  color: #ffffff;
+}
+
+.malla {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 20px;
 }
 
-.curso {
-  border: 1px solid #aaa;
+.anio {
+  border: 2px solid #ffffff;
+  padding: 15px;
+  flex: 1 1 200px;
+}
+
+.cuatrimestre {
+  margin-top: 10px;
+}
+
+.materia {
   padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
   cursor: pointer;
+  color: #000000;
 }
 
-.aprobado {
-  background-color: #90ee90; /* verde */
+.bloqueada {
+  background-color: #98FF98; /* Verde menta */
 }
 
-.bloqueado {
-  opacity: 0.4;
+.habilitada {
+  background-color: #00FFFF; /* Verde cian */
 }
 
-.desbloqueado {
-  opacity: 1;
+.aprobada {
+  background-color: #50C878; /* Verde esmeralda */
+  text-decoration: line-through;
 }
