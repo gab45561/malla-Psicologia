@@ -1,8 +1,9 @@
-/* Fondo azul marino para modo noche */
+/* Fondo azul marino modo noche */
 body {
   background-color: #003366; /* Azul marino */
   color: #ffffff;
   font-family: Arial, sans-serif;
+  padding: 20px;
 }
 
 h1, h2, h3 {
@@ -11,18 +12,19 @@ h1, h2, h3 {
 
 .malla {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .anio {
   border: 2px solid #ffffff;
   padding: 15px;
-  flex: 1 1 200px;
+  border-radius: 10px;
 }
 
 .cuatrimestre {
-  margin-top: 10px;
+  margin-top: 20px;
+  padding-left: 20px;
 }
 
 .materia {
@@ -31,10 +33,16 @@ h1, h2, h3 {
   border-radius: 5px;
   cursor: pointer;
   color: #000000;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+}
+
+.materia:hover {
+  transform: scale(1.03);
 }
 
 .bloqueada {
   background-color: #98FF98; /* Verde menta */
+  opacity: 0.6;
 }
 
 .habilitada {
