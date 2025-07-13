@@ -1,15 +1,14 @@
 // 🚀 MALLA INTERACTIVA DE PSICOLOGÍA
-// Lógica para habilitar materias y desbloquear correlativas especiales
+// Lógica general + verificación especial de 5° año
 
-// 1️⃣ Al cargar la página: habilita materias sin correlativas y configura clics
+// 1️⃣ Habilitar materias sin correlativas
 document.querySelectorAll('.materia').forEach(materia => {
-  // Si no tiene correlativas => habilitada
   if (materia.dataset.correlativas.trim() === "") {
     materia.classList.remove('bloqueada');
     materia.classList.add('habilitada');
   }
 
-  // Cada materia escucha clic
+  // Escucha clics para aprobar
   materia.addEventListener('click', () => {
     if (materia.classList.contains('habilitada')) {
       materia.classList.remove('habilitada');
@@ -21,7 +20,7 @@ document.querySelectorAll('.materia').forEach(materia => {
   });
 });
 
-// 2️⃣ Función que desbloquea materias dependientes y casos especiales
+// 2️⃣ Verificar correlativas normales + especiales
 function desbloquearMaterias(aprobadaId) {
   document.querySelectorAll('.materia').forEach(materia => {
     if (materia.classList.contains('bloqueada')) {
@@ -32,7 +31,7 @@ function desbloquearMaterias(aprobadaId) {
 
       const materiaId = materia.dataset.id;
 
-      // ✅ CASO GENERAL: materias normales
+      // CASO GENERAL
       if (materiaId !== "36" && materiaId !== "37" && materiaId !== "38") {
         if (correlativas.includes(aprobadaId)) {
           const allAprobadas = correlativas.every(corId => {
@@ -45,49 +44,61 @@ function desbloquearMaterias(aprobadaId) {
             materia.classList.add('habilitada');
           }
         }
-      } 
-      // ✅ CASO ESPECIAL: materias 36, 37, 38 (Prácticas + Taller)
-      else {
-        let requisitos = true;
+      }
+    }
+  });
 
-        // 1° a 3° año completo (id 1 a 26)
-        for (let id = 1; id <= 26; id++) {
+  // Verifica prácticas de 5° cada vez
+  verificarPracticas();
+}
+
+// 3️⃣ Función para verificar prácticas de 5°
+function verificarPracticas() {
+  [36, 37, 38].forEach(practicaId => {
+    const practica = document.querySelector(`.materia[data-id="${practicaId}"]`);
+    if (practica) {
+      let requisitos = true;
+
+      // 1° a 3° año aprobado (1-26)
+      for (let id = 1; id <= 26; id++) {
+        const mat = document.querySelector(`.materia[data-id="${id}"]`);
+        if (!mat || !mat.classList.contains('aprobada')) {
+          requisitos = false;
+          break;
+        }
+      }
+
+      // Materias extra según práctica
+      if (practicaId === 36) {
+        [27, 28].forEach(id => {
           const mat = document.querySelector(`.materia[data-id="${id}"]`);
-          if (!mat || !mat.classList.contains('aprobada')) {
-            requisitos = false;
-            break;
-          }
-        }
-
-        // Materias adicionales obligatorias
-        if (materiaId === "36") {
-          [27, 28].forEach(id => {
-            const mat = document.querySelector(`.materia[data-id="${id}"]`);
-            if (!mat || !mat.classList.contains('aprobada')) requisitos = false;
-          });
-        }
-
-        if (materiaId === "37" || materiaId === "38") {
-          [27, 28, 34, 35].forEach(id => {
-            const mat = document.querySelector(`.materia[data-id="${id}"]`);
-            if (!mat || !mat.classList.contains('aprobada')) requisitos = false;
-          });
-        }
-
-        // Al menos una orientación aprobada: 30 o 32 o 33
-        const orientacionOk = [30, 32, 33].some(id => {
-          const mat = document.querySelector(`.materia[data-id="${id}"]`);
-          return mat && mat.classList.contains('aprobada');
+          if (!mat || !mat.classList.contains('aprobada')) requisitos = false;
         });
+      }
+      if (practicaId === 37 || practicaId === 38) {
+        [27, 28, 34, 35].forEach(id => {
+          const mat = document.querySelector(`.materia[data-id="${id}"]`);
+          if (!mat || !mat.classList.contains('aprobada')) requisitos = false;
+        });
+      }
 
-        if (!orientacionOk) requisitos = false;
+      // Al menos una orientación: 30, 32 o 33
+      const orientacionOk = [30, 32, 33].some(id => {
+        const mat = document.querySelector(`.materia[data-id="${id}"]`);
+        return mat && mat.classList.contains('aprobada');
+      });
 
-        // Si todo cumple, habilita
-        if (requisitos) {
-          materia.classList.remove('bloqueada');
-          materia.classList.add('habilitada');
-        }
+      if (!orientacionOk) requisitos = false;
+
+      // Aplica
+      if (requisitos) {
+        practica.classList.remove('bloqueada');
+        practica.classList.add('habilitada');
+      } else {
+        practica.classList.remove('habilitada');
+        practica.classList.add('bloqueada');
       }
     }
   });
 }
+
