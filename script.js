@@ -102,3 +102,5 @@ function verificarPracticas() {
   });
 }
 
+// 4️⃣ Verificar prácticas de 5° también al cargar la página
+verificarPracticas();
