@@ -1,37 +1,34 @@
 // Lógica general + verificación especial de 5° año
-//  localStorage
+// Recupera materias aprobadas del localStorage
 let aprobadas = JSON.parse(localStorage.getItem('materiasAprobadas')) || [];
 
 document.querySelectorAll('.materia').forEach(materia => {
   const id = parseInt(materia.dataset.id);
 
-  // Si está en localStorage, marcar como aprobada
+  // Si está aprobada, márcala como aprobada
   if (aprobadas.includes(id)) {
     materia.classList.remove('bloqueada', 'habilitada');
     materia.classList.add('aprobada');
   } 
-  
-// Habilitar materias sin correlativas
-document.querySelectorAll('.materia').forEach(materia => {
-  if (materia.dataset.correlativas.trim() === "") {
+  // Si NO está aprobada y NO tiene correlativas → habilitada
+  else if (materia.dataset.correlativas.trim() === "") {
     materia.classList.remove('bloqueada');
     materia.classList.add('habilitada');
   }
 
-  // clic para aprobar
+  // Escucha clic para aprobar
   materia.addEventListener('click', () => {
     if (materia.classList.contains('habilitada')) {
       materia.classList.remove('habilitada');
       materia.classList.add('aprobada');
-      desbloquearMaterias(parseInt(materia.dataset.id));
-      localStorage.setItem('materiasAprobadas', JSON.stringify(aprobadas)); // ✅ Actualiza localStorage
+      aprobadas.push(id);
+      localStorage.setItem('materiasAprobadas', JSON.stringify(aprobadas));
       desbloquearMaterias(id);
     } else if (materia.classList.contains('bloqueada')) {
       alert("Esta materia aún está bloqueada.");
     }
   });
 });
-
 // Verificar correlativas normales + especiales
 function desbloquearMaterias(aprobadaId) {
   document.querySelectorAll('.materia').forEach(materia => {
