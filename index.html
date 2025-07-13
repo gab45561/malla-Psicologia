@@ -1,13 +1,116 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Malla Interactiva Psicología</title>
-  <link rel="stylesheet" href="estilos.css">
+  <meta charset="UTF-8" />
+  <title>Malla Interactiva - Psicología</title>
+  <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
   <h1>Malla Interactiva - Psicología</h1>
-  <div id="malla"></div>
+
+  <div class="malla">
+
+    <!-- 1er Año -->
+    <div class="anio">
+      <h2>1° Año</h2>
+
+      <div class="cuatrimestre">
+        <h3>1° Cuatrimestre</h3>
+        <div class="materia bloqueada" data-id="1" data-correlativas="">Psicología General I</div>
+        <div class="materia bloqueada" data-id="2" data-correlativas="">Fundamentos de Filosofía</div>
+        <div class="materia bloqueada" data-id="3" data-correlativas="">Informática</div>
+        <div class="materia bloqueada" data-id="4" data-correlativas="">Neurociencias</div>
+        <div class="materia bloqueada" data-id="5" data-correlativas="">Inglés</div>
+      </div>
+
+      <div class="cuatrimestre">
+        <h3>2° Cuatrimestre</h3>
+        <div class="materia bloqueada" data-id="6" data-correlativas="1">Psicología General II</div>
+        <div class="materia bloqueada" data-id="7" data-correlativas="">Problemáticas Socioculturales Contemporáneas</div>
+        <div class="materia bloqueada" data-id="8" data-correlativas="2">Antropología Cultural</div>
+        <div class="materia bloqueada" data-id="9" data-correlativas="">Portugués</div>
+        <div class="materia bloqueada" data-id="18" data-correlativas="2;6">Comunicación y Lenguaje</div>
+      </div>
+    </div>
+
+    <!-- 2° Año -->
+    <div class="anio">
+      <h2>2° Año</h2>
+
+      <div class="cuatrimestre">
+        <h3>1° Cuatrimestre</h3>
+        <div class="materia bloqueada" data-id="10" data-correlativas="6">Psicología Evolutiva Niñez</div>
+        <div class="materia bloqueada" data-id="11" data-correlativas="4">Neurociencias II</div>
+        <div class="materia bloqueada" data-id="12" data-correlativas="6">Teoría Psicoanalítica I</div>
+        <div class="materia bloqueada" data-id="13" data-correlativas="8">Sociología</div>
+      </div>
+
+      <div class="cuatrimestre">
+        <h3>2° Cuatrimestre</h3>
+        <div class="materia bloqueada" data-id="14" data-correlativas="12">Teoría Psicoanalítica II</div>
+        <div class="materia bloqueada" data-id="15" data-correlativas="13">Salud Pública - Salud Mental</div>
+        <div class="materia bloqueada" data-id="16" data-correlativas="10">Psicología Evolutiva Adolescencia</div>
+        <div class="materia bloqueada" data-id="17" data-correlativas="">Psicoestadística</div>
+      </div>
+    </div>
+
+    <!-- 3° Año -->
+    <div class="anio">
+      <h2>3° Año</h2>
+
+      <div class="cuatrimestre">
+        <h3>1° Cuatrimestre</h3>
+        <div class="materia bloqueada" data-id="19" data-correlativas="16">Psicología Evolutiva Adulto Vejez</div>
+        <div class="materia bloqueada" data-id="20" data-correlativas="14;18">Psicopatología</div>
+        <div class="materia bloqueada" data-id="21" data-correlativas="15;18">Psicología Social Familia y Sistemas</div>
+        <div class="materia bloqueada" data-id="22" data-correlativas="17">Metodología de la Investigación</div>
+        <div class="materia bloqueada" data-id="23" data-correlativas="2">Historia Epistemológica de la Psicología</div>
+      </div>
+
+      <div class="cuatrimestre">
+        <h3>2° Cuatrimestre</h3>
+        <div class="materia bloqueada" data-id="24" data-correlativas="21">Teoría y Técnica de Grupo</div>
+        <div class="materia bloqueada" data-id="25" data-correlativas="15;22">Práctica de Investigación Psicosocial</div>
+        <div class="materia bloqueada" data-id="26" data-correlativas="7;15;23">Ética, Deontología Profesional y Derechos Humanos</div>
+      </div>
+    </div>
+
+    <!-- 4° Año -->
+    <div class="anio">
+      <h2>4° Año</h2>
+
+      <div class="cuatrimestre">
+        <h3>1° Cuatrimestre</h3>
+        <div class="materia bloqueada" data-id="27" data-correlativas="7;24;26">Psicología Institucional y Comunitaria</div>
+        <div class="materia bloqueada" data-id="28" data-correlativas="20;26">Psicodiagnóstico</div>
+        <div class="materia bloqueada" data-id="29" data-correlativas="14;15;16;20;26">Clínica Psicoanalítica I</div>
+      </div>
+
+      <div class="cuatrimestre">
+        <h3>2° Cuatrimestre</h3>
+        <div class="materia bloqueada" data-id="30" data-correlativas="7;11;19;20;26">Psicología en Educación y del Aprendizaje</div>
+        <div class="materia bloqueada" data-id="31" data-correlativas="11;15;18;20;26">Clínica Psicoterapéutica I</div>
+        <div class="materia bloqueada" data-id="32" data-correlativas="24;26">Psicología Laboral y Organizacional</div>
+        <div class="materia bloqueada" data-id="33" data-correlativas="7;20;26">Psicología Jurídica y Criminológica</div>
+        <div class="materia bloqueada" data-id="34" data-correlativas="31">Clínica Psicoterapéutica II</div>
+        <div class="materia bloqueada" data-id="35" data-correlativas="19;29">Clínica Psicoanalítica II</div>
+      </div>
+    </div>
+
+    <!-- 5° Año -->
+    <div class="anio">
+      <h2>5° Año</h2>
+
+      <div class="cuatrimestre">
+        <h3>1° Cuatrimestre</h3>
+        <div class="materia bloqueada" data-id="36" data-correlativas="">Práctica Profesional Supervisada por Orientación</div>
+        <div class="materia bloqueada" data-id="37" data-correlativas="">Práctica Profesional Supervisada en Área Clínica</div>
+        <div class="materia bloqueada" data-id="38" data-correlativas="">Taller de Trabajo Integrador Final</div>
+      </div>
+    </div>
+
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
