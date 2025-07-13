@@ -1,0 +1,29 @@
+body {
+  font-family: Times New Roman, sans-serif;
+  background: #f5f5f5;
+  padding: 20px;
+}
+
+#malla {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.curso {
+  border: 1px solid #aaa;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.aprobado {
+  background-color: #90ee90; /* verde */
+}
+
+.bloqueado {
+  opacity: 0.4;
+}
+
+.desbloqueado {
+  opacity: 1;
+}
